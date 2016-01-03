@@ -557,7 +557,7 @@ $(OUTPUT_BIN).elf: MKTOOLS $(ALL_C_OBJECTS) $(ALL_CXX_OBJECTS) $(ALL_ASM_OBJECTS
 
 $(OUTPUT_BIN).bin: $(OUTPUT_BIN).elf
 	@echo $(START_BOLD)"Making binary $(OUTPUT_BIN).bin" $(END_BOLD)
-	@echo "board $(PLATFORM), $(DEVICE_DEFINES)"
+	@echo "board $(PLATFORM), $DEVICE_DEFINES"
 	$(QUIET)$(OBJCOPY) -O binary "$(OUTPUT_BIN).elf" "$(OUTPUT_BIN).tmp.bin"
 	$(QUIET)if `command -v xxd >/dev/null 2>&1`; then\
 		printf '%08x' `cksum "$(OUTPUT_BIN).tmp.bin" | cut -d' ' -f1` | xxd -r -p | dd of="$(OUTPUT_BIN).tmp.bin" bs=1 count=4 seek=256 conv=notrunc;\
